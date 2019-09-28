@@ -94,18 +94,19 @@ class Hash{
 	}
 	static double calculateBinaryDiff (String s1, String s2) {
 		double ress = 0;
-		if (s1.length() == s2.length()) {
-			for (int i = 0; i < s1.length(); i++) {
-				if (s1.charAt(i) == s2.charAt(i)){
-					ress++;
-				}
-			}
-			return (ress / s1.length()) * 100;
+		int length;
+		if (s1.length() < s2.length()) {
+			length = s1.length();
 		}
 		else {
-			System.out.println("Different bit lenghts");
+			length = s2.length();
 		}
-		return ress;
+		for (int i = 0; i < length; i++) {
+			if (s1.charAt(i) == s2.charAt(i)){
+				ress++;
+			}
+		}
+		return (ress / s1.length()) * 100;
 	}
 	static void test4() throws IOException{
 		Scanner sc = new Scanner(new File("pairsonediff.txt"));
@@ -115,8 +116,8 @@ class Hash{
 			line = sc.nextLine();
 			firstString = line.split(" ")[0];
 			secondString = line.split(" ")[1];
-			binary1 = new BigInteger(firstString.getBytes()).toString(2);
-			binary2 = new BigInteger(secondString.getBytes()).toString(2);
+			binary1 = new BigInteger(toHash(firstString).getBytes()).toString(2);
+			binary2 = new BigInteger(toHash(secondString).getBytes()).toString(2);
 			diff.add(calculateBinaryDiff(binary1, binary2));
 		}
 		Collections.sort(diff);
@@ -126,6 +127,7 @@ class Hash{
 		}
 		avg = sum / diff.size();
 		System.out.println("Min " + diff.get(0) + " " + "\nMax " +diff.get(diff.size() - 1) + "\nAverage " + avg);
+		sc.close();
 	}
 	static String generateString(int targetLength) {
 		int leftLimit = 33;

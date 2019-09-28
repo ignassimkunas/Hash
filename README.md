@@ -34,9 +34,9 @@ No matches found
 
 - Ketvirtas testas:
 ```
-Min 81.57894736842105 
+Min 34.177215189873415 
 Max 100.0
-Average 91.22653400711079
+Average 85.81019172472428
 ```
 
 # Change log
