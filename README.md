@@ -32,6 +32,13 @@ Empty file:
 No matches found
 ```
 
+- Ketvirtas testas:
+```
+Min 81.57894736842105 
+Max 100.0
+Average 91.22653400711079
+```
+
 # Change log
 
 ## [v0.1](https://github.com/ignassimkunas/blockchain/releases/tag/v0.1)
