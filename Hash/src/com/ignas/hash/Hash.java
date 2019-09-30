@@ -106,7 +106,26 @@ class Hash{
 				ress++;
 			}
 		}
-		return (ress / s1.length()) * 100;
+		if (s1.length() < s2.length()) {
+			return (ress / s2.length()) * 100;
+		}
+		else if (s1.length() > s2.length()) {
+			return (ress / s1.length()) * 100;
+		}
+		return (ress / length) * 100;
+	}
+	static void generateFile ()throws IOException {
+		FileWriter fw = new FileWriter(new File("pairsonediff.txt"));
+		String first, second;
+		for (int i = 0; i < 1000000; i++) {
+			first = generateString(5);
+			second = first.substring(0, first.length() - 1) + generateString(1);
+			while (first.charAt(first.length() - 1) == second.charAt(second.length() - 1)) {
+				second = first.substring(0, first.length() - 1) + generateString(1);
+			}
+			fw.write(first + " " + second + "\n");			
+		}
+		fw.close();
 	}
 	static void test4() throws IOException{
 		Scanner sc = new Scanner(new File("pairsonediff.txt"));
@@ -116,6 +135,9 @@ class Hash{
 			line = sc.nextLine();
 			firstString = line.split(" ")[0];
 			secondString = line.split(" ")[1];
+			if (firstString.charAt(firstString.length() - 1) == secondString.charAt(secondString.length() - 1)) {
+				System.out.println(firstString + " " + secondString);
+			}
 			binary1 = new BigInteger(toHash(firstString).getBytes()).toString(2);
 			binary2 = new BigInteger(toHash(secondString).getBytes()).toString(2);
 			diff.add(calculateBinaryDiff(binary1, binary2));
